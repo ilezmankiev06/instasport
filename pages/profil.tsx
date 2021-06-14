@@ -128,26 +128,6 @@ const Profil: NextPage<{ currentUsersEmail; data; user }> = ({
     <Layout>
     <div className="bodyPost">
       <div className="BodyNews">
-        {/* <div className="row">
-          <div className="Nav">
-            <nav className="navbar row">
-              <div className="itemNavbar col-3"></div>
-              <div className="profilPhoto col-6">
-                <div className="profilImage">
-                  <img
-                    className="photoNav"
-                    key={user[0].id}
-                    src={user[0].photo}
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="itemNavbar col-3">
-                <a href="/">Logout</a>
-              </div>
-            </nav>
-          </div>
-        </div> */}
         <div className="row">
           <div className="BodyNews col-3">
             <div className="container">

@@ -1,29 +1,8 @@
-//import { MongoClient } from "mongodb";
-// const getDatabase = async () => {
-//   const databaseUrl = process.env.MONGODB_URI;
-//   const options = { useNewUrlParser: true, useUnifiedTopology: true };
-//   const mongoDataBase = await MongoClient.connect(databaseUrl, options);
-//   return mongoDataBase;
-// };
 import { getDatabase } from "./mongodb";
 
 ///////////////////////////
 /////// insertUser ///////
 //////////////////////////
-
-// const insertUser = async (token: string, date: Date, email: any) => {
-//   try {
-//     (await getDatabase())
-//       .db("instasportDB")
-//       .collection("user")
-//       .insertOne({
-//         email: email,
-//         cookie: { token: token, expdate: date },
-//       });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
 const insertUser = async (token: string, date: Date, email: any) => {
   try {
     (await getDatabase())
@@ -45,36 +24,6 @@ const insertUser = async (token: string, date: Date, email: any) => {
     console.log(e);
   }
 };
-
-// const insertUser = async (token: string, date: Date, email: any) => {
-//   let searchResult;
-//   try {
-//     searchResult = (await getDatabase())
-//       .db("instasportDB")
-//       .collection("user")
-//       .findOne({
-//         email: email,
-//       });
-//   } catch (e) {
-//     console.log(e);
-//   }
-
-//   if (await searchResult) {
-//     updateToken(token, date, email);
-//   } else {
-//     try {
-//       (await getDatabase())
-//         .db("instasportDB")
-//         .collection("user")
-//         .insertOne({
-//           cookie: { token: token, expdate: date },
-//           email: email,
-//         });
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
-// };
 
 ///////////////////////////
 ////// updateToken ///////
@@ -131,7 +80,6 @@ const getUserByCookie = async (cookie: any) => {
     console.log(e);
   }
   const foundUser = await result;
-  console.log("🟠", foundUser);
   return foundUser ? foundUser : "";
 };
 
@@ -241,7 +189,6 @@ const getSearch = async (data: any) => {
       .collection("user")
       .find({ userName: { $in: arrayData } })
       .toArray();
-    console.log("result", await result);
     return result;
   } catch (e) {
     console.log(e);
@@ -283,7 +230,6 @@ const getAllGroups = async () => {
 };
 
 const getCommentsByPost = async (id: any) => {
-  console.log("ididididididididididiid", id);
   const ObjectId = require("mongodb").ObjectID;
   const idForFilter = ObjectId(id);
   let result;
@@ -299,12 +245,10 @@ const getCommentsByPost = async (id: any) => {
     console.log(e);
   }
   const foundComments = await result;
-  console.log("🟠", foundComments);
   return foundComments ? foundComments : "";
 };
 
 const getSearchUserById = async (id: any) => {
-  console.log("ididididididididididiid", id);
   const ObjectId = require("mongodb").ObjectID;
   const idForFilter = ObjectId(id);
   let result;
@@ -319,7 +263,6 @@ const getSearchUserById = async (id: any) => {
     console.log(e);
   }
   const foundUser = await result;
-  console.log("🟠", foundUser);
   return foundUser ? foundUser : "";
 };
 
@@ -337,7 +280,6 @@ const getAllPostsByGroups = async (id: any) => {
     console.log(e);
   }
   const foundPosts = await result;
-  console.log(" Posts", foundPosts);
   return foundPosts ? foundPosts : "";
 };
 
@@ -397,7 +339,6 @@ const createComment = async (data: any) => {
       });
 
     const result3 = await result;
-    console.log("result33333333333", ObjectId(result3.insertedId));
 
     const result2 = (await getDatabase())
       .db("instasportDB")
@@ -408,8 +349,6 @@ const createComment = async (data: any) => {
         },
         { $push: { commentsPost: { $each: ["1"] } } }
       );
-
-    console.log("🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠🟠", await result2);
   } catch (e) {
     console.log(e);
   }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { NextPage, GetServerSideProps } from "next";
-import { getDatabase } from "../utils/mongodb";
+import { NextPage } from "next";
 
 const CommentPost: NextPage<{ data }> = ({ data }) => {
     const [like, setLike] = useState(0);

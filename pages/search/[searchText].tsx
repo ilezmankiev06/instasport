@@ -13,7 +13,6 @@ const SearchText: NextPage = (props: any) => {
     const user = fetch("/api/search?searchValue=" + props.SearchText)
       .then((res) => res.json())
       .then((users) => {
-        console.log(users);
         setUserList(users);
       });
   };
@@ -50,14 +49,6 @@ const SearchText: NextPage = (props: any) => {
 export default SearchText;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log("juste context", context.query);
-  // const c = cookies(context).fewlines;
-  // let currentUser;
-
-  // console.log("🟢", currentUser);
-  // console.log("cookie", c);
-  // const urlToSignIn = await initClient().getAuthorizationURL();
-
   return {
     props: {
       // cookie: c,

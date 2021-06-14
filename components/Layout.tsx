@@ -2,7 +2,6 @@ import Head from "next/head";
 import React from "react";
 import Navbar from "./Navbar";
 
-let children: React.ReactNode;
 const Layout: React.FC = ({ children }) => {
   return (
     <>
